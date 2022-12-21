@@ -1,0 +1,257 @@
+object MainForm: TMainForm
+  Left = 377
+  Height = 704
+  Top = 160
+  Width = 1023
+  Caption = 'Collatz''s Seaweed'
+  ClientHeight = 704
+  ClientWidth = 1023
+  LCLVersion = '1.8.4.0'
+  object Panel: TPanel
+    Left = 0
+    Height = 34
+    Top = 0
+    Width = 1023
+    Align = alTop
+    ClientHeight = 34
+    ClientWidth = 1023
+    TabOrder = 0
+    object MaxSpin: TSpinEdit
+      Left = 56
+      Height = 23
+      Top = 4
+      Width = 70
+      Increment = 100
+      MaxValue = 1000000
+      MinValue = 10
+      OnChange = UpdateColl
+      TabOrder = 0
+      Value = 10000
+    end
+    object Label1: TLabel
+      Left = 15
+      Height = 15
+      Top = 7
+      Width = 30
+      Caption = '&Limit:'
+      FocusControl = MaxSpin
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 144
+      Height = 15
+      Top = 7
+      Width = 60
+      Caption = '&Even angle:'
+      ParentColor = False
+    end
+    object EvenAngleSpin: TSpinEdit
+      Left = 216
+      Height = 23
+      Top = 4
+      Width = 48
+      MaxValue = 45
+      MinValue = 1
+      OnChange = UpdateColl
+      TabOrder = 1
+      Value = 10
+    end
+    object Label3: TLabel
+      Left = 272
+      Height = 15
+      Top = 7
+      Width = 69
+      Caption = '°  &Odd angle:'
+      FocusControl = OddAngleSpin
+      ParentColor = False
+    end
+    object OddAngleSpin: TSpinEdit
+      Left = 352
+      Height = 23
+      Top = 4
+      Width = 48
+      MaxValue = 45
+      MinValue = 1
+      OnChange = UpdateColl
+      TabOrder = 2
+      Value = 10
+    end
+    object Label5: TLabel
+      Left = 456
+      Height = 15
+      Top = 7
+      Width = 25
+      Caption = '&Hue:'
+      FocusControl = HueCombo
+      ParentColor = False
+    end
+    object HueCombo: TComboBox
+      Left = 488
+      Height = 23
+      Top = 4
+      Width = 88
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'number'
+        'angle'
+        'steps'
+      )
+      OnChange = UpdateColl
+      Style = csDropDownList
+      TabOrder = 3
+      Text = 'number'
+    end
+    object Label4: TLabel
+      Left = 592
+      Height = 15
+      Top = 8
+      Width = 57
+      Caption = '&Saturation:'
+      FocusControl = SaturationCombo
+      ParentColor = False
+    end
+    object SaturationCombo: TComboBox
+      Left = 656
+      Height = 23
+      Top = 4
+      Width = 88
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'highest'
+        'greyscale'
+        'number'
+        'angle'
+        'steps'
+      )
+      OnChange = UpdateColl
+      Style = csDropDownList
+      TabOrder = 4
+      Text = 'highest'
+    end
+    object Label6: TLabel
+      Left = 760
+      Height = 15
+      Top = 8
+      Width = 53
+      Caption = '&Lightness:'
+      FocusControl = LightnessCombo
+      ParentColor = False
+    end
+    object LightnessCombo: TComboBox
+      Left = 824
+      Height = 23
+      Top = 4
+      Width = 88
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'constant'
+        'number'
+        'angle'
+        'steps'
+        'animated'
+      )
+      OnChange = UpdateColl
+      Style = csDropDownList
+      TabOrder = 5
+      Text = 'constant'
+    end
+    object Label7: TLabel
+      Left = 408
+      Height = 15
+      Top = 7
+      Width = 5
+      Caption = '°'
+      ParentColor = False
+    end
+    object AngleLockButton: TSpeedButton
+      Left = 424
+      Height = 23
+      Hint = 'Connect angles'
+      Top = 4
+      Width = 23
+      AllowAllUp = True
+      Glyph.Data = {
+        B6040000424DB604000000000000360000002800000012000000100000000100
+        2000000000008004000064000000640000000000000000000000FFFFFFFFFEFE
+        FEFFF8F8F8FF68B8CDFF0389ACFF0084A6FF0080A0FF007C9BFF007896FF0074
+        91FF00708CFF006C87FF006782FF00647DFF00647DFF02657EFF68A6B4FFFFFF
+        FFFFF5F5F5FFE6E6E6FFD9D9D9FF028EB2FFD0F7FBFFBFF8FFFF9FF5FFFF82F1
+        FDFF78EDF9FF6EE8F5FF64E3F0FF58DCEBFF53D7E5FF50D2E0FF4ECEDBFF43C3
+        D2FF02657EFFFFFFFFFFE5E5E5FFB9BBBAFF979997FF0092B7FFDDFBFFFF7AF1
+        FFFF43ECFFFF1BE7FDFF18E0F6FF14DAEFFF11D4E8FF0DCDE2FF0AC7DBFF06C0
+        D4FF03BACDFF4CCAD7FF00647DFFFFFFFFFFE1E1E1FF989A99FFA6A9A8FF0094
+        BBFFDFFBFFFF7AF1FFFF43ECFFFF1BE7FDFF18E0F6FF14DAEFFF11D4E8FF0DCD
+        E2FF0AC7DBFF06C0D4FF03BACDFF4CCAD7FF00647DFFFFFFFFFFE8E8E8FF8689
+        88FFBABBBAFF0096BDFFE7FCFFFF9EF4FFFF7AF1FFFF5AEDFDFF4CE7F8FF3DE0
+        F1FF30D9EBFF24D1E4FF1BCADDFF12C3D6FF17BFD1FF5ECFDBFF00647DFFFFFF
+        FFFF858A88FF858A88FF858A88FF0096BDFFE9FCFFFFA7F5FFFF85F2FFFF69EF
+        FDFF64EAF8FF5CE5F3FF55E0EEFF4CDAE9FF44D4E3FF3ACDDDFF32C6D6FF68D2
+        DDFF00667FFFFFFFFFFFD6DCDAFFD5DCD9FFD4DBD8FF0096BDFFEAFCFFFFABF6
+        FFFF8AF3FFFF6FEFFDFF68EAF9FF60E6F4FF57E0EEFF4EDAE9FF46D4E3FF3CCD
+        DDFF33C7D6FF69D2DDFF006983FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0195
+        BBFFE0F9FCFFDDFBFFFFD1FAFFFFC4F8FEFFBBF5FBFFB1F2F9FFA7EEF6FF9DEA
+        F2FF91E6EEFF85DFE9FF78D9E4FF61CDD8FF026D88FFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFF3A788DFF0296BCFF0096BDFF0096BDFF0093B9FF008FB3FF008B
+        AEFF0087A9FF0083A4FF007F9FFF007A9AFF007695FF00728FFF6BADBDFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6F7371FFFDFEFDFF717472FFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6D716FFFE2E7E4FF6D71
+        6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF848886FFFEFE
+        FEFF6F7270FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6D71
+        6FFFC5CFCAFF6D716FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF999D9BFFFDFDFDFF8C8D8BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFF7F8582FFBEC8C2FF6D716FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFF95918FFFEFF1F0FFCFD2D0FF7D7C7AFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFF6E6D6BFFA7AEAAFFACB5B1FF757977FFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8B7A79FFB2B5B2FFF3F5F4FFC2C8
+        C4FF8C8E8CFF727573FF6F7270FF808280FFB8BCB9FFD0D6D3FF7E8380FFC3C3
+        C3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F83
+        82FFA4A7A5FFC9CECBFFCFD5D1FFD0D7D3FFD4DAD7FFCBCFCCFFA6A9A7FF787C
+        7AFF9EA3A1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFC3C3C3FF938A89FF9A9A98FF9B9E9CFF8B8E8CFF7F80
+        7EFFC3C3C3FFC3C3C3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      }
+      GroupIndex = 1
+      ShowHint = True
+      ParentShowHint = False
+    end
+  end
+  object OpenGLBox: TOpenGLControl
+    Left = 0
+    Height = 670
+    Top = 34
+    Width = 1023
+    Align = alClient
+    OnMouseDown = OpenGLBoxMouseDown
+    OnMouseMove = OpenGLBoxMouseMove
+    OnMouseUp = OpenGLBoxMouseUp
+    OnMouseWheel = OpenGLBoxMouseWheel
+    OnPaint = OpenGLBoxPaint
+    OnResize = OpenGLBoxResize
+  end
+  object InfoText: TStaticText
+    Left = 119
+    Height = 48
+    Top = 96
+    Width = 105
+    BorderStyle = sbsSingle
+    Caption = 'InfoText'
+    Color = clBlack
+    Font.Color = clWhite
+    ParentFont = False
+    ParentColor = False
+    ShowAccelChar = False
+    TabOrder = 2
+    Transparent = False
+    Visible = False
+  end
+  object Timer: TTimer
+    Enabled = False
+    Interval = 50
+    OnTimer = TimerTimer
+    left = 28
+    top = 73
+  end
+end
