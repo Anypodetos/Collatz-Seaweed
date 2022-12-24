@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Spin, Buttons, Math, GL, OpenGLContext, Types, StrUtils;
+  StdCtrls, Spin, Buttons, Math, GL, OpenGLContext, Types, StrUtils, LclIntf, About;
 
 type
 
@@ -30,7 +30,9 @@ type
     OddAngleSpin: TSpinEdit;
     InfoText: TStaticText;
     AngleLockButton: TSpeedButton;
+    AboutButton: TSpeedButton;
     Timer: TTimer;
+    procedure AboutButtonClick(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure UpdateColl(Sender: TObject);
     procedure OpenGLBoxMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -51,6 +53,9 @@ type
 
 var
   MainForm: TMainForm;
+
+const
+  CompileDate = {$I %DATE%};
 
 implementation
 
@@ -259,6 +264,11 @@ begin
     glEnd;
     OpenGLBox.SwapBuffers;
   end;
+end;
+
+procedure TMainForm.AboutButtonClick(Sender: TObject);
+begin
+  AboutForm.ShowModal;
 end;
 
 end.
